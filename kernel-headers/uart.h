@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <mailbox.h>
+#include <general.h>
 
 enum
 {
