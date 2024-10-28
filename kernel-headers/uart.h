@@ -46,7 +46,7 @@ enum
 
 // A Mailbox message with set clock rate of PL011 to 3MHz tag
 volatile unsigned int  __attribute__((aligned(16))) mbox[9] = {
-  9*4, 0, 0x38002, 12, 8, 2, 3000000, 0 ,0
+  9*4, 0, 0x38002, 12, 8, 2, 30000000, 0 ,0
 };
 
 void uart_init(int raspi)
@@ -74,7 +74,7 @@ void uart_init(int raspi)
 	// Set integer & fractional part of baud rate.
 	// Divider = UART_CLOCK/(16 * Baud)
 	// Fraction part register = (Fractional part * 64) + 0.5
-	// Baud = 115200.
+	// Baud = 3000000.
 
 	// For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default.
 	// Set it to 3Mhz so that we can consistently set the baud rate
