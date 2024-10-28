@@ -46,7 +46,7 @@ enum
 
 // A Mailbox message with set clock rate of PL011 to 3MHz tag
 volatile unsigned int  __attribute__((aligned(16))) mbox[9] = {
-  9*4, 0, 0x38002, 12, 8, 2, 30000000, 0 ,0
+  9*4, 0, 0x38002, 12, 8, 2, 3000000, 0 ,0
 };
 
 void uart_init(int raspi)
@@ -74,12 +74,12 @@ void uart_init(int raspi)
 	// Set integer & fractional part of baud rate.
 	// Divider = UART_CLOCK/(16 * Baud)
 	// Fraction part register = (Fractional part * 64) + 0.5
-	// Baud = 3000000.
+	// Baud = 115200.
 
 	// For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default.
 	// Set it to 3Mhz so that we can consistently set the baud rate
 	if (raspi >= 3) {
-		// UART_CLOCK = 30000000;
+		// UART_CLOCK = 3000000;
 		unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
 		// wait until we can talk to the VC
 		while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
@@ -88,10 +88,10 @@ void uart_init(int raspi)
 		while ( (mmio_read(MBOX_STATUS) & 0x40000000) || mmio_read(MBOX_READ) != r ) { }
 	}
 
-	// Divider = 3000000 / (16 * 115200) = 1.627 = ~1.
+	// Divider = 3000000 / (16 * 115200) = 1.628 = ~1.
 	mmio_write(UART0_IBRD, 1);
-	// Fractional part register = (.627 * 64) + 0.5 = 40.6 = ~40.
-	mmio_write(UART0_FBRD, 40);
+	// Fractional part register = (.628 * 64) + 0.5 = 40.6 = ~40.
+	mmio_write(UART0_FBRD, 41);
 
 	// Enable FIFO & 8 bit data transmission (1 stop bit, no parity).
 	mmio_write(UART0_LCRH, (1 << 4) | (1 << 5) | (1 << 6));
