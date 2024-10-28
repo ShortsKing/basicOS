@@ -1,7 +1,7 @@
-boot.o: boot.c
-  as c boot.s -o boot.o
+boot.o: boot.S
+  as c boot.S -o boot.o
 
-kernel.o: kernel.c
+kernel.o: kernel.c kernel-headers/uart.h kernel-headers/mailbox.h
   gcc -ffreestanding -c kernel.c -o kernel.o -O2 -Wall -Wextra
 
 myos.elf kernel8.img: linker.ld boot.o kernel.o
