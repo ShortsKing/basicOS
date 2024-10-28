@@ -89,7 +89,7 @@ void uart_init(int raspi)
 	}
 
 	// Divider = 3000000 / (16 * 115200) = 1.628 = ~1.
-	mmio_write(UART0_IBRD, 1);
+	mmio_write(UART0_IBRD, 2);
 	// Fractional part register = (.628 * 64) + 0.5 = 40.6 = ~40.
 	mmio_write(UART0_FBRD, 41);
 
