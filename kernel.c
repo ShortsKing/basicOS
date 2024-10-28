@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdint.h>
-#include <kernel-headers/uart.h>
+#include <uart.h>
 
 
 // Loop <delay> times in a way that the compiler won't optimize away
