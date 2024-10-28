@@ -1,5 +1,5 @@
 boot.o: boot.S
-  as c boot.S -o boot.o
+  as -o boot.S
 
 kernel.o: kernel.c kernel-headers/uart.h kernel-headers/mailbox.h
   gcc -ffreestanding -c kernel.c -o kernel.o -O2 -Wall -Wextra
