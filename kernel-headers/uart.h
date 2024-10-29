@@ -1,3 +1,5 @@
+// WARNING: THE CONTENTS OF THIS FILE DO NOT YIELD EXPECTED RESULTS. PROCEED WITH CAUTION.
+
 #include <stddef.h>
 #include <stdint.h>
 #include <mailbox.h>
@@ -89,9 +91,9 @@ void uart_init(int raspi)
 	}
 
 	// Divider = 3000000 / (16 * 115200) = 1.628 = ~1.
-	mmio_write(UART0_IBRD, 0);
+	mmio_write(UART0_IBRD, 1);
 	// Fractional part register = (.628 * 64) + 0.5 = 40.6 = ~40.
-	mmio_write(UART0_FBRD, 5);
+	mmio_write(UART0_FBRD, 40);
 
 	// Enable FIFO & 8 bit data transmission (1 stop bit, no parity).
 	mmio_write(UART0_LCRH, (1 << 4) | (1 << 5) | (1 << 6));
