@@ -10,7 +10,7 @@ static inline void mmio_init()
 	char *board;
 
 	/* read the system register */
-#if __AARCH64__
+#ifdef AARCH64
 	asm volatile ("mrs %x0, midr_el1" : "=r" (reg));
 #else
 	asm volatile ("mrc p15,0,%0,c0,c0,0" : "=r" (reg));
