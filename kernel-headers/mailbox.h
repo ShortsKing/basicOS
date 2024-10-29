@@ -14,7 +14,7 @@ static inline void mmio_init()
 	asm volatile ("mrs %x0, midr_el1" : "=r" (reg));
 #else
 	// assume aarch64 anyway ;)
-	asm volatile ("mrs p15,0,%0,c0,c0,0" : "=r" (reg));
+	asm volatile ("mrs 15,0,%0,c0,c0,0" : "=r" (reg));
 #endif
 
 	/* get the PartNum, detect board and MMIO base address */
