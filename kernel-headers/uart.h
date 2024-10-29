@@ -48,7 +48,7 @@ enum
 
 // A Mailbox message with set clock rate of PL011 to 3MHz tag
 volatile unsigned int  __attribute__((aligned(16))) mbox[9] = {
-  9*4, 0, 0x38002, 12, 8, 2, 3000000, 0 ,0
+  9*4, 0, 0x38002, 12, 8, 2, 30000000, 0 ,0
 };
 
 void uart_init(int raspi)
@@ -91,9 +91,9 @@ void uart_init(int raspi)
 	}
 
 	// Divider = 3000000 / (16 * 115200) = 1.628 = ~1.
-	mmio_write(UART0_IBRD, 1);
+	mmio_write(UART0_IBRD, 16);
 	// Fractional part register = (.628 * 64) + 0.5 = 40.6 = ~40.
-	mmio_write(UART0_FBRD, 40);
+	mmio_write(UART0_FBRD, 18);
 
 	// Enable FIFO & 8 bit data transmission (1 stop bit, no parity).
 	mmio_write(UART0_LCRH, (1 << 4) | (1 << 5) | (1 << 6));
