@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <uart.h>
+#include <gpu.h>
 
 #if defined(__cplusplus)
 extern "C" /* Use C linkage for kernel_main. */
