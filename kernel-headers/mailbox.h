@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdint.h>
+#include <constants.h>
 
 static uint32_t MMIO_BASE;
 // The MMIO area base address, depends on board type
