@@ -24,7 +24,7 @@ static inline uint32_t mmio_read(uint32_t reg)
 	return *(volatile uint32_t*)(MMIO_BASE + reg);
 }
 
-unsigned int mbox_call(unsigned char ch)
+/*unsigned int mbox_call(unsigned char ch)
 {
 	// 28-bit address (MSB) and 4-bit value (LSB)
 	unsigned int r = ((unsigned int)((long) &mbox) &~ 0xF) | (ch & 0xF);
@@ -45,4 +45,4 @@ unsigned int mbox_call(unsigned char ch)
 	}
 	//doesn't run you don't have to worry about this.
 	return 0;
-}
+}*/
