@@ -5,7 +5,7 @@ myos.elf kernel8.img: linker.ld boot.o kernel.o
 boot.o: boot.S
   as boot.S -o boot.o
 
-kernel.o: kernel.c kernel-headers/uart.h kernel-headers/mailbox.h
+kernel.o: kernel.c
   gcc -ffreestanding -I kernel-headers -c kernel.c -o kernel.o -O2 -Wall -Wextra
 
 
