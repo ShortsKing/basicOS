@@ -22,3 +22,26 @@ static inline uint32_t mmio_read(uint32_t reg)
 {
 	return *(volatile uint32_t*)(MMIO_BASE + reg);
 }
+
+unsigned int mbox_call(unsigned char ch)
+{
+	// 28-bit address (MSB) and 4-bit value (LSB)
+	unsigned int r = ((unsigned int)((long) &mbox) &~ 0xF) | (ch & 0xF);
+	
+	// Wait until we can write
+	while (mmio_read(MBOX_STATUS) & MBOX_FULL);
+	
+	// Write the address of our buffer to the mailbox with the channel appended
+	mmio_write(MBOX_WRITE, r);
+	
+	while (1) {
+	// Is there a reply?
+	while (mmio_read(MBOX_STATUS) & MBOX_EMPTY);
+	
+	// Is it a reply to our message?
+	if (r == mmio_read(MBOX_READ)) return mbox[1]==MBOX_RESPONSE; // Is it successful?
+	   
+	}
+	//doesn't run you don't have to worry about this.
+	return 0;
+}
