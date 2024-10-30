@@ -1,7 +1,11 @@
 #include <stddef.h>
 #include <stdint.h>
-#include <uart.h>
+#include <constants.h>
+#include <general.h>
 #include <gpu.h>
+#include <mailbox.h>
+#include <uart.h>
+
 
 #if defined(__cplusplus)
 extern "C" /* Use C linkage for kernel_main. */
