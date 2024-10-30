@@ -33,8 +33,15 @@ enum
   UART0_TDR    = (UART0_BASE + 0x8C), // test data register
 
   // The offsets for Mailbox registers
-  MBOX_BASE    = 0xB880,
-  MBOX_READ    = (MBOX_BASE + 0x00),
-  MBOX_STATUS  = (MBOX_BASE + 0x18),
-  MBOX_WRITE   = (MBOX_BASE + 0x20)
+  MBOX_BASE      = 0xB880,
+  MBOX_READ      = (MBOX_BASE + 0x00),
+  MBOX_POLL      = (MBOX_BASE + 0x10),
+  MBOX_SENDER    = (MBOX_BASE + 0x14),
+  MBOX_STATUS    = (MBOX_BASE + 0x18),
+  MBOX_CONFIG    = (MBOX_BASE + 0x1C),
+  MBOX_WRITE     = (MBOX_BASE + 0x20),
+  MBOX_RESPONSE  = 0x80000000,
+  MBOX_FULL      = 0x80000000,
+  MBOX_ERROR     = 0x40000000
+
 };
