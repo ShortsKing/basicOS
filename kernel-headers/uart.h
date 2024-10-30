@@ -1,11 +1,5 @@
 // WARNING: THE CONTENTS OF THIS FILE DO NOT YIELD EXPECTED RESULTS. PROCEED WITH CAUTION.
 
-#include <stddef.h>
-#include <stdint.h>
-#include <mailbox.h>
-#include <general.h>
-#include <constants.h>
-
 // A Mailbox message with set clock rate of PL011 to 3MHz tag
 volatile unsigned int  __attribute__((aligned(16))) mbox[9] = {
   9*4, 0, 0x38002, 12, 8, 2, 30000000, 0 ,0
